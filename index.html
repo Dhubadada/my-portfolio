@@ -1,140 +1,623 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruba Chowdhury | Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruba Chowdhury | CSE Undergraduate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        accent: '#f97316',
+                        secondary: '#0f172a',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #f97316;
+            border-radius: 2px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f97316;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #2563eb;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 25px;
+            width: 1px;
+            height: calc(100% + 10px);
+            background: #cbd5e1;
+        }
+        
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+        }
+        
+        .contact-card:hover i {
+            color: white;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #2563eb 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-pattern {
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, rgba(248, 250, 252, 0) 20%),
+                        radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1) 0%, rgba(248, 250, 252, 0) 30%);
+        }
+    </style>
 </head>
-<body class="bg-[#0c0c1e] text-white font-sans">
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold">
+                <span class="gradient-text">Dhruba</span> Chowdhury
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-gray-900">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-gray-900">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900">Skills</a>
+                <a href="#projects" class="nav-link text-gray-700 hover:text-gray-900">Projects</a>
+                <a href="#education" class="nav-link text-gray-700 hover:text-gray-900">Education</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
 
-  <!-- Navigation -->
-  <nav class="bg-[#0f172a] py-4 px-8 flex justify-between items-center">
-    <a href="index.html" class="hover:text-white transition text-cyan-400 font-bold text-2xl">Dhruba</a>
-    <div class="flex gap-6 text-cyan-400 font-semibold text-lg">
-      <a href="#about" class="hover:text-white transition">About</a>
-      <a href="#journey" class="hover:text-white transition">Education</a>
-      <a href="#skills" class="hover:text-white transition">Skills</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex flex-col justify-center order-2 md:order-1 mt-12 md:mt-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Hi, I'm <span class="gradient-text">Dhruba Chowdhury</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl text-gray-600 mb-6">
+                    <span class="text-accent font-medium">CSE Undergraduate</span> at East Delta University
+                </h2>
+                <p class="text-gray-600 mb-8 max-w-lg">
+                    Results-driven Computer Science undergraduate with expertise in AI, web development, and design. 
+                    Passionate about blending innovation with leadership to create meaningful digital solutions.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-primary text-white font-medium rounded-full hover:bg-blue-700 transition duration-300">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition duration-300">
+                        Contact Me
+                    </a>
+                </div>
+                <div class="mt-8 flex space-x-4">
+                    <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-primary hover:bg-gray-200">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-700 hover:bg-gray-200">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Dhubadada" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:221016412@eastdelta.edu.bd" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-red-600 hover:bg-gray-200">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center items-center order-1 md:order-2">
+                <div class="relative">
+                    <div class="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-accent shadow-xl flex items-center justify-center bg-gray-200">
+                        <img src="jk.jpg" alt="Dhruba Chowdhury" class="object-cover w-full h-full" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-extrabold text-primary tracking-wide section-title">About <span class="text-red-500">Me</span></h2>
+        </div>
+        <div class="flex flex-col md:flex-row gap-10">
+            <!-- My Journey -->
+            <div class="md:w-1/2">
+                <h3 class="text-3xl font-semibold mb-4 text-blue-800">🚀 My Journey</h3>
+                <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                    I'm a passionate <span class="text-yellow-600 font-medium">Computer Science undergraduate</span> at 
+                    <span class="text-red-600 font-semibold">East Delta University</span> with a 
+                    <span class="text-blue-600 font-bold">CGPA of 3.52</span> and 
+                    <span class="text-green-600 font-bold">152.5 credits</span> completed. 
+                    My academic journey is enriched by extracurricular involvement and hands-on project work.
+                </p>
+                <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                    As an <span class="text-purple-600 font-medium">Executive Board Member</span> of the 
+                    <span class="text-orange-600 font-semibold">EDU Career Club</span>, I’ve gained valuable leadership experience. 
+                    I’ve built <span class="text-blue-600 font-semibold">full-stack web apps</span> using 
+                    <span class="text-red-600 font-bold">Python (Flask)</span>, developed dynamic websites, and designed media content 
+                    using industry-standard tools.
+                </p>
+                <div class="bg-gray-100 rounded-xl p-6 border-l-4 border-yellow-400 shadow-md">
+                    <h4 class="font-bold text-xl mb-3 text-gray-800">🎯 Career Objective</h4>
+                    <p class="text-gray-700 text-base">
+                        Seeking the <span class="text-blue-700 font-semibold">Student Associate (Graphics & Multimedia/Social Media)</span> role to 
+                        combine my technical and creative talents in support of 
+                        <span class="text-red-500 font-semibold">EDU's community engagement</span>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Achievements & Experience -->
+            <div class="md:w-1/2">
+                <h3 class="text-3xl font-semibold mb-4 text-green-800">🏆 Achievements</h3>
+                <div class="space-y-6">
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r shadow-sm">
+                        <h4 class="font-bold text-gray-800 text-lg">Outstanding Student Award</h4>
+                        <p class="text-gray-600">East Delta University</p>
+                    </div>
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r shadow-sm">
+                        <h4 class="font-bold text-gray-800 text-lg">2nd Runner-Up</h4>
+                        <p class="text-gray-600">ICT Fair</p>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r shadow-sm">
+                        <h4 class="font-bold text-gray-800 text-lg">2nd Place</h4>
+                        <p class="text-gray-600">Science Fair, BCSIR Chattogram</p>
+                    </div>
+                </div>
+
+                <h3 class="text-3xl font-semibold mt-10 mb-4 text-purple-800">💼 Experience</h3>
+                <div class="bg-gray-100 rounded-xl p-6 border-l-4 border-purple-400 shadow-md">
+                    <h4 class="font-bold text-xl mb-2 text-gray-800">Executive Board Member</h4>
+                    <p class="text-gray-700 mb-2 text-base">East Delta University Career Club</p>
+                    <p class="text-gray-700 text-base">
+                        Played a key role in organizing <span class="text-blue-700 font-medium">career development workshops</span>, 
+                        networking events, and student mentorship programs.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
+</section>
 
-  <!-- Hero Section -->
-  <header class="bg-[#0f172a] py-20 px-8">
-    <div class="max-w-7xl mx-auto text-center">
-      <h1 class="text-5xl font-bold mb-4">
-        Hi, I'm <span class="text-red-500">Dhruba</span> <span class="text-cyan-400">Chowdhury</span>
-      </h1>
-      <h2 class="text-2xl text-gray-300 mb-4">
-        A passionate <span class="text-red-400 font-semibold">CSE Undergraduate</span>
-      </h2>
-      <p class="text-gray-400 max-w-2xl mx-auto mb-6">
-        I specialize in <span class="text-blue-400">AI, web development</span>, and creative design. My mission is to build modern, responsive, and impactful user experiences with code and creativity.
-      </p>
-      <div class="flex justify-center gap-4 mb-4">
-        <a href="https://github.com/Dhubadada" class="bg-red-500 text-white font-semibold px-6 py-2 rounded hover:bg-red-400 transition">View Projects</a>
-        <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" class="bg-blue-500 text-white font-semibold px-6 py-2 rounded hover:bg-blue-400 transition">Contact Me</a>
-      </div>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-primary section-title">My <span class="text-red-500">Skills</span></h2>
     </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="py-16 px-4 text-center">
-    <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-yellow-400">
-      About Me
-    </h2>
-<img src="jk.jpg" alt="Dhruba Chowdhury" class="mx-auto w-36 h-36 rounded-full border-4 border-cyan-400 mb-8 shadow-lg" />
-    <p class="max-w-2xl mx-auto text-gray-300 text-lg leading-relaxed mb-6">
-      I'm a <span class="text-blue-400 text-xl font-semibold">Computer Science undergraduate student</span> at 
-      <span class="text-red-400 font-bold">East Delta University</span>. I specialize in 
-      <span class="text-cyan-400 font-semibold">web development</span>, 
-      <span class="text-yellow-300">creative media tools</span>, and have hands-on experience with 
-      <span class="text-blue-300 font-semibold">AI/ML</span> and 
-      <span class="text-red-300 font-bold">Python Flask</span>.
-    </p>
-
-    <div class="space-y-2 text-lg font-medium">
-      <p class="text-yellow-300">🏆 <span class="text-white">Outstanding Student Award</span> – <span class="text-cyan-400">EDU</span></p>
-      <p class="text-blue-300">🥈 <span class="text-white">2nd Runner-Up</span> – <span class="text-red-400">ICT Fair</span></p>
-      <p class="text-red-300">🥈 <span class="text-white">2nd Place</span> – <span class="text-yellow-400">Science Fair, BCSIR Chattogram</span></p>
-    </div>
-  </section>
-
-  <!-- Journey Section -->
-  <section id="journey" class="bg-[#111827] py-16 px-4">
-    <h2 class="text-5xl font-extrabold text-center mb-12 text-yellow-400">
-      My Journey
-    </h2>
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       
-      <!-- Education -->
-      <div class="bg-[#1f2937] p-8 rounded-xl shadow-lg hover:shadow-yellow-400 transition-shadow duration-300">
-        <h3 class="text-2xl font-bold mb-5 text-blue-400">🎓 Education</h3>
-        <ul class="list-disc list-inside text-gray-300 space-y-3">
-          <li>2022 - Present: <span class="text-yellow-300 font-semibold">BSc in Computer Science</span>, East Delta University</li>
-          <li>2020: HSC, Prabartak School & College (<span class="text-yellow-400">GPA: 4.64</span>)</li>
-          <li>2018: SSC, Hathazari Govt. Parbati Model High School (<span class="text-red-400">GPA: 4.32</span>)</li>
-        </ul>
+      <!-- Web Development -->
+      <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-blue-700 text-3xl mb-3">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3 class="font-bold text-lg text-blue-900 mb-2">Web Development</h3>
+        <p class="text-blue-800">HTML, CSS, JavaScript, Flask</p>
       </div>
 
-      <!-- Experience -->
-      <div class="bg-[#1f2937] p-8 rounded-xl shadow-lg hover:shadow-blue-400 transition-shadow duration-300">
-        <h3 class="text-2xl font-bold mb-5 text-yellow-400">💼 Experience & Projects</h3>
-        <ul class="list-disc list-inside text-gray-300 space-y-3">
-          <li>Web <span class="text-red-300 font-semibold">Developer</span></li>
-          <li>Flutter <span class="text-blue-400 font-semibold">Developer</span></li>
-          <li>Executive Board Member – <span class="text-yellow-400">EDU Career Club</span></li>
-          <li>Full-stack projects using <span class="text-red-300">Python Flask</span></li>
-          <li>Designed & deployed <span class="text-blue-300 font-semibold">dynamic websites</span></li>
-        </ul>
+      <!-- Creative Media -->
+      <div class="bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-pink-600 text-3xl mb-3">
+          <i class="fas fa-paint-brush"></i>
+        </div>
+        <h3 class="font-bold text-lg text-pink-900 mb-2">Creative Media</h3>
+        <p class="text-pink-800">Proficient in design tools</p>
+      </div>
+
+      <!-- AI/ML -->
+      <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-yellow-600 text-3xl mb-3">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="font-bold text-lg text-yellow-900 mb-2">AI/ML Fundamentals</h3>
+        <p class="text-yellow-800">Core concepts and applications</p>
+      </div>
+
+      <!-- Flutter Development -->
+      <div class="bg-gradient-to-br from-green-100 to-green-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-green-700 text-3xl mb-3">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3 class="font-bold text-lg text-green-900 mb-2">Flutter Development</h3>
+        <p class="text-green-800">Cross-platform apps</p>
+      </div>
+
+      <!-- Leadership -->
+      <div class="bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-purple-700 text-3xl mb-3">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 class="font-bold text-lg text-purple-900 mb-2">Leadership</h3>
+        <p class="text-purple-800">Team management</p>
+      </div>
+
+      <!-- Communication -->
+      <div class="bg-gradient-to-br from-red-100 to-red-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-red-600 text-3xl mb-3">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3 class="font-bold text-lg text-red-900 mb-2">Communication</h3>
+        <p class="text-red-800">Verbal & written skills</p>
+      </div>
+
+      <!-- Problem Solving -->
+      <div class="bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-indigo-600 text-3xl mb-3">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h3 class="font-bold text-lg text-indigo-900 mb-2">Problem Solving</h3>
+        <p class="text-indigo-800">Creative & analytical</p>
+      </div>
+
+      <!-- Time Management -->
+      <div class="bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
+        <div class="text-teal-600 text-3xl mb-3">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h3 class="font-bold text-lg text-teal-900 mb-2">Time Management</h3>
+        <p class="text-teal-800">Efficient under pressure</p>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-16 px-10 bg-[#0f172a]">
-    <h2 class="text-5xl font-extrabold text-center mb-16 text-cyan-400">My Skills</h2>
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
+
+   <section id="projects" class="py-16 bg-gradient-to-b from-white via-gray-50 to-white">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-gray-800">Projects & <span class="text-blue-600">Experience</span></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       
-      <!-- Tech Skills -->
-      <div class="w-full md:w-1/2">
-        <h3 class="text-3xl font-bold mb-6 text-red-400">Tech Skills</h3>
-        <ul class="space-y-4 text-gray-300 text-lg list-inside list-disc">
-          <li><span class="text-yellow-400">HTML</span>, <span class="text-blue-400">CSS</span>, <span class="text-red-400">JavaScript</span></li>
-          <li><span class="text-blue-500">Python (Flask)</span>, <span class="text-yellow-500">C</span>, <span class="text-red-500">C++</span>, <span class="text-cyan-400">Flutter</span></li>
-          <li><span class="text-purple-400 italic">AI/ML Fundamentals</span></li>
-          <li><span class="text-pink-400 font-semibold">Web Development & Creative Media Tools</span></li>
-        </ul>
+      <!-- Project Card Template -->
+      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-blue-600 to-blue-400 group-hover:blur-sm transition-all"></div>
+        <div class="relative p-6 z-10">
+          <div class="text-white bg-blue-500 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+            <i class="fas fa-code text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Full-stack Web Applications</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Created full-stack projects using Python Flask, handling both front-end and back-end efficiently.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Python</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Flask</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">HTML/CSS</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Professional Skills -->
-      <div class="w-full md:w-1/2">
-        <h3 class="text-3xl font-bold mb-6 text-blue-400">Professional Skills</h3>
-        <ul class="space-y-4 text-gray-300 text-lg list-inside list-disc">
-          <li><span class="text-pink-400">Leadership</span> & <span class="text-yellow-400 italic">Creative Problem Solving</span></li>
-          <li><span class="text-red-400 font-semibold">Effective Communication</span> & <span class="text-cyan-400">Collaboration</span></li>
-          <li><span class="text-purple-400">Time Management</span> & <span class="text-blue-500 font-bold">Working Under Pressure</span></li>
-          <li><span class="text-green-400">Microsoft Office</span> (Excel, Word, PowerPoint)</li>
-        </ul>
+      <!-- Dynamic Website -->
+      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-orange-500 to-yellow-400 group-hover:blur-sm transition-all"></div>
+        <div class="relative p-6 z-10">
+          <div class="text-white bg-orange-500 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+            <i class="fas fa-paint-brush text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Dynamic Websites & Tools</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Designed interactive websites with modern UI/UX and responsive layouts.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">JavaScript</span>
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">UI/UX Design</span>
+            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Responsive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Career Club -->
+      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-green-500 to-teal-400 group-hover:blur-sm transition-all"></div>
+        <div class="relative p-6 z-10">
+          <div class="text-white bg-green-500 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+            <i class="fas fa-users text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">EDU Career Club</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Led initiatives and events to develop students’ professional skills and networks.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Leadership</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Event Planning</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Networking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Applications -->
+      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-purple-600 to-indigo-500 group-hover:blur-sm transition-all"></div>
+        <div class="relative p-6 z-10">
+          <div class="text-white bg-purple-600 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+            <i class="fas fa-mobile-alt text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile Applications</h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Built mobile apps using Flutter with a focus on UI design and performance.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Flutter</span>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Dart</span>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">UI Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <!-- Education Section -->
+<section id="education" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-red-600"> Education</h2>
+    </div>
+    
+    <div class="relative max-w-3xl mx-auto pl-6 border-l-4 border-red-500">
+      <!-- Timeline Item 1 -->
+      <div class="mb-10 relative">
+        <div class="absolute -left-3 top-1 w-6 h-6 bg-red-500 rounded-full border-4 border-white"></div>
+        <h3 class="text-2xl font-semibold text-blue-700">- BSc in Computer Science & Engineering</h3>
+        <p class="text-gray-700 font-medium">East Delta University, Chattogram</p>
+        <p class="text-yellow-600">Running | CGPA: <span class="font-bold">3.52</span> | Credits: 152.5</p>
+      </div>
+
+      <!-- Timeline Item 2 -->
+      <div class="mb-10 relative">
+        <div class="absolute -left-3 top-1 w-6 h-6 bg-yellow-500 rounded-full border-4 border-white"></div>
+        <h3 class="text-2xl font-semibold text-purple-700">- Higher Secondary Certificate (HSC)</h3>
+        <p class="text-gray-700 font-medium">Prabartak School & College</p>
+        <p class="text-red-600">2020 | GPA: <span class="font-bold">4.64</span></p>
+      </div>
+
+      <!-- Timeline Item 3 -->
+      <div class="mb-10 relative">
+        <div class="absolute -left-3 top-1 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+        <h3 class="text-2xl font-semibold text-green-700">- Secondary School Certificate (SSC)</h3>
+        <p class="text-gray-700 font-medium">Hathazari Govt. Parbati Model High School</p>
+        <p class="text-purple-600">2018 | GPA: <span class="font-bold">4.32</span></p>
       </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="text-center text-sm py-6 bg-[#7f1d1d] text-white mt-12">
-    <p class="italic text-yellow-300 mb-3">
-      “Success is not final; failure is not fatal: It is the courage to continue that counts.”
-    </p>
-    <p class="mb-4 text-green-300">
-      📍 Chattogram, Bangladesh | 📞 +8801991944833 |
-      ✉️ <a href="mailto:221016412@eastdelta.edu.bd" class="hover:underline text-yellow-300">221016412@eastdelta.edu.bd</a>
-    </p>
-    <p class="text-yellow-300">
-      &copy; 2025 Dhruba Chowdhury. All rights reserved. &nbsp;|&nbsp;
-      <a href="https://github.com/Dhubadada" class="hover:underline text-green-300">GitHub</a> &nbsp;|&nbsp;
-      <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" class="hover:underline text-green-300">LinkedIn</a>
-    </p>
-  </footer>
+    <!-- Languages -->
+    <div class="mt-14 text-center">
+      <h3 class="text-3xl font-bold text-blue-700 mb-4"> Languages</h3>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">Bangla (Native)</span>
+        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-medium">English</span>
+      </div>
+    </div>
+  </div>
+</section>
 
+
+    <!-- Contact Section -->
+   <section id="contact" class="py-20 bg-gradient-to-br from-white to-gray-100">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl font-extrabold text-blue-700">Contact Me</h2>
+      <p class="mt-2 text-gray-600 text-lg">Let’s collaborate, innovate, and create something amazing together.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <!-- Contact Info -->
+      <div class="space-y-6">
+        <h3 class="text-2xl font-semibold text-gray-800">Get in Touch</h3>
+        <p class="text-gray-600 mb-8 leading-relaxed">
+          Whether it's a project, a question, or an opportunity—I'm always open to talking. Reach out, and let's make something meaningful.
+        </p>
+
+        <!-- Contact Item -->
+        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
+          <i class="fas fa-map-marker-alt text-red-500 text-2xl"></i>
+          <div>
+            <h4 class="text-gray-800 font-semibold">Location</h4>
+            <p class="text-gray-600">Chattogram, Bangladesh</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
+          <i class="fas fa-envelope text-blue-500 text-2xl"></i>
+          <div>
+            <h4 class="text-gray-800 font-semibold">Email</h4>
+            <p class="text-gray-600">221016412@eastdelta.edu.bd</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
+          <i class="fas fa-phone-alt text-green-500 text-2xl"></i>
+          <div>
+            <h4 class="text-gray-800 font-semibold">Phone</h4>
+            <p class="text-gray-600">+8801991944833</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
+          <i class="fas fa-globe text-purple-500 text-2xl"></i>
+          <div>
+            <h4 class="text-gray-800 font-semibold">Portfolio</h4>
+            <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="text-blue-600 hover:underline">
+              dhubadada.github.io/my-portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send a Message</h3>
+        <form class="space-y-5">
+          <input type="text" placeholder="Your Name" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <input type="email" placeholder="Your Email" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <input type="text" placeholder="Subject" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <textarea rows="5" placeholder="Your Message" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+          <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 rounded-xl font-semibold shadow-md hover:opacity-90 transition duration-300">
+             Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="py-10 bg-[#7f1d1d] text-white">
+  <div class="container mx-auto px-4 md:px-8 text-center">
+    
+    <!-- Social Icons -->
+    <div class="flex justify-center space-x-6 mb-6 text-xl">
+      <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="hover:text-yellow-300 transition-colors">
+        <i class="fas fa-globe"></i>
+      </a>
+      <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="hover:text-yellow-300 transition-colors">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/Dhubadada" target="_blank" class="hover:text-yellow-300 transition-colors">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:221016412@eastdelta.edu.bd" class="hover:text-yellow-300 transition-colors">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+
+    <!-- Motivational Line -->
+    <p class="italic font-medium text-lg mb-4">"Strive not to be a success, but rather to be of value." – Albert Einstein</p>
+
+    <!-- Footer Info -->
+    <p class="text-sm">&copy; 2025 <span class="font-semibold">Dhruba Chowdhury</span>. All rights reserved.</p>
+    <p class="text-sm mt-1">East Delta University, Chattogram</p>
+    
+  </div>
+</footer>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
