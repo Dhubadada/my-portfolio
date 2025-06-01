@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhruba Chowdhury | CSE Undergraduate</title>
+    <title>Dhruba Chowdhury | CSE Undergraduate | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,11 +20,23 @@
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
+                        'wave': 'wave 2s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        wave: {
+                            '0%': { transform: 'rotate(0.0deg)' },
+                            '10%': { transform: 'rotate(14deg)' },
+                            '20%': { transform: 'rotate(-8deg)' },
+                            '30%': { transform: 'rotate(14deg)' },
+                            '40%': { transform: 'rotate(-4deg)' },
+                            '50%': { transform: 'rotate(10.0deg)' },
+                            '60%': { transform: 'rotate(0.0deg)' },
+                            '100%': { transform: 'rotate(0.0deg)' },
                         }
                     }
                 }
@@ -36,19 +48,22 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1e293b;
+            scroll-behavior: smooth;
         }
         
         .section-title {
             position: relative;
             display: inline-block;
+            padding-bottom: 10px;
         }
         
         .section-title:after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
             height: 4px;
             background: #f97316;
             border-radius: 2px;
@@ -85,6 +100,7 @@
         
         .project-card {
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
         
         .project-card:hover {
@@ -141,15 +157,104 @@
             background: linear-gradient(90deg, #2563eb 0%, #f97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero-pattern {
             background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, rgba(248, 250, 252, 0) 20%),
                         radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1) 0%, rgba(248, 250, 252, 0) 30%);
         }
+        
+        .professional-border {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+            margin: 40px auto;
+            width: 80%;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .wave-hand {
+            animation-name: wave;
+            animation-duration: 2.5s;
+            animation-iteration-count: 1;
+            transform-origin: 70% 70%;
+            display: inline-block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        
+        .skill-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #2563eb, #1e40af);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="min-h-screen">
+    <!-- Scroll to top button -->
+    <div id="scrollTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 py-4 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
@@ -164,9 +269,43 @@
                 <a href="#education" class="nav-link text-gray-700 hover:text-gray-900">Education</a>
                 <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900">Contact</a>
             </div>
-            <button class="md:hidden text-gray-700">
+            <button id="menuToggle" class="md:hidden text-gray-700">
                 <i class="fas fa-bars text-xl"></i>
             </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-2xl p-6">
+            <div class="flex justify-between items-center mb-10">
+                <a href="#" class="text-xl font-bold">
+                    <span class="gradient-text">Dhruba</span> Chowdhury
+                </a>
+                <button id="closeMenu" class="text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <a href="#home" class="nav-link text-gray-700 hover:text-gray-900">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-gray-900">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900">Skills</a>
+                <a href="#projects" class="nav-link text-gray-700 hover:text-gray-900">Projects</a>
+                <a href="#education" class="nav-link text-gray-700 hover:text-gray-900">Education</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900">Contact</a>
+            </div>
+            <div class="mt-10 flex space-x-4">
+                <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-primary hover:bg-gray-200">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-700 hover:bg-gray-200">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Dhubadada" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:221016412@eastdelta.edu.bd" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-red-600 hover:bg-gray-200">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -174,43 +313,48 @@
     <section id="home" class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-24">
         <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 flex flex-col justify-center order-2 md:order-1 mt-12 md:mt-0">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                    Hi, I'm <span class="gradient-text">Dhruba Chowdhury</span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in">
+                    Hi, I'm <span class="gradient-text">Dhruba Chowdhury</span> <span class="wave-hand">👋</span>
                 </h1>
-                <h2 class="text-xl md:text-2xl text-gray-600 mb-6">
+                <h2 class="text-xl md:text-2xl text-gray-600 mb-6 fade-in delay-100">
                     <span class="text-accent font-medium">CSE Undergraduate</span> at East Delta University
                 </h2>
-                <p class="text-gray-600 mb-8 max-w-lg">
+                <p class="text-gray-600 mb-8 max-w-lg fade-in delay-200">
                     Results-driven Computer Science undergraduate with expertise in AI, web development, and design. 
                     Passionate about blending innovation with leadership to create meaningful digital solutions.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-6 py-3 bg-primary text-white font-medium rounded-full hover:bg-blue-700 transition duration-300">
+                <div class="flex flex-wrap gap-4 fade-in delay-300">
+                    <a href="#projects" class="px-6 py-3 bg-primary text-white font-medium rounded-full hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg">
                         View My Work
                     </a>
-                    <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition duration-300">
+                    <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition duration-300 shadow-md hover:shadow-lg">
                         Contact Me
                     </a>
                 </div>
-                <div class="mt-8 flex space-x-4">
-                    <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-primary hover:bg-gray-200">
+                <div class="mt-8 flex space-x-4 fade-in delay-400">
+                    <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-primary hover:bg-gray-200 transition-all">
                         <i class="fas fa-globe"></i>
                     </a>
-                    <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-700 hover:bg-gray-200">
+                    <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-700 hover:bg-gray-200 transition-all">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://github.com/Dhubadada" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200">
+                    <a href="https://github.com/Dhubadada" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-all">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:221016412@eastdelta.edu.bd" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-red-600 hover:bg-gray-200">
+                    <a href="mailto:221016412@eastdelta.edu.bd" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-red-600 hover:bg-gray-200 transition-all">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
             <div class="md:w-1/2 flex justify-center items-center order-1 md:order-2">
-                <div class="relative">
+                <div class="relative fade-in">
                     <div class="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-accent shadow-xl flex items-center justify-center bg-gray-200">
                         <img src="jk.jpg" alt="Dhruba Chowdhury" class="object-cover w-full h-full" />
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-white rounded-full p-3 shadow-lg">
+                        <div class="bg-primary w-12 h-12 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">3.52</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,387 +363,505 @@
 
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
-    <div class="container mx-auto px-4 md:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-extrabold text-primary tracking-wide section-title">About <span class="text-red-500">Me</span></h2>
-        </div>
-        <div class="flex flex-col md:flex-row gap-10">
-            <!-- My Journey -->
-            <div class="md:w-1/2">
-                <h3 class="text-3xl font-semibold mb-4 text-blue-800">🚀 My Journey</h3>
-                <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                    I'm a passionate <span class="text-yellow-600 font-medium">Computer Science undergraduate</span> at 
-                    <span class="text-red-600 font-semibold">East Delta University</span> with a 
-                    <span class="text-blue-600 font-bold">CGPA of 3.52</span> and 
-                    <span class="text-green-600 font-bold">152.5 credits</span> completed. 
-                    My academic journey is enriched by extracurricular involvement and hands-on project work.
-                </p>
-                <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                    As an <span class="text-purple-600 font-medium">Executive Board Member</span> of the 
-                    <span class="text-orange-600 font-semibold">EDU Career Club</span>, I’ve gained valuable leadership experience. 
-                    I’ve built <span class="text-blue-600 font-semibold">full-stack web apps</span> using 
-                    <span class="text-red-600 font-bold">Python (Flask)</span>, developed dynamic websites, and designed media content 
-                    using industry-standard tools.
-                </p>
-                <div class="bg-gray-100 rounded-xl p-6 border-l-4 border-yellow-400 shadow-md">
-                    <h4 class="font-bold text-xl mb-3 text-gray-800">🎯 Career Objective</h4>
-                    <p class="text-gray-700 text-base">
-                        Seeking the <span class="text-blue-700 font-semibold">Student Associate (Graphics & Multimedia/Social Media)</span> role to 
-                        combine my technical and creative talents in support of 
-                        <span class="text-red-500 font-semibold">EDU's community engagement</span>.
-                    </p>
-                </div>
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold text-primary tracking-wide section-title">About <span class="text-accent">Me</span></h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Get to know my journey, achievements, and career aspirations</p>
             </div>
-
-            <!-- Achievements & Experience -->
-            <div class="md:w-1/2">
-                <h3 class="text-3xl font-semibold mb-4 text-green-800">🏆 Achievements</h3>
-                <div class="space-y-6">
-                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r shadow-sm">
-                        <h4 class="font-bold text-gray-800 text-lg">Outstanding Student Award</h4>
-                        <p class="text-gray-600">East Delta University</p>
-                    </div>
-                    <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r shadow-sm">
-                        <h4 class="font-bold text-gray-800 text-lg">2nd Runner-Up</h4>
-                        <p class="text-gray-600">ICT Fair</p>
-                    </div>
-                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r shadow-sm">
-                        <h4 class="font-bold text-gray-800 text-lg">2nd Place</h4>
-                        <p class="text-gray-600">Science Fair, BCSIR Chattogram</p>
+            <div class="flex flex-col md:flex-row gap-10">
+                <!-- My Journey -->
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                        <h3 class="text-2xl font-semibold mb-4 text-primary flex items-center">
+                            <i class="fas fa-rocket mr-2 text-accent"></i> My Journey
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            I'm a passionate <span class="font-medium text-primary">Computer Science undergraduate</span> at 
+                            <span class="font-semibold text-blue-700">East Delta University</span> with a 
+                            <span class="font-bold text-primary">CGPA of 3.52</span> and 
+                            <span class="font-bold text-green-600">152.5 credits</span> completed. 
+                            My academic journey is enriched by extracurricular involvement and hands-on project work.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            As an <span class="font-medium text-purple-600">Executive Board Member</span> of the 
+                            <span class="font-semibold text-orange-500">EDU Career Club</span>, I've gained valuable leadership experience. 
+                            I've built <span class="font-semibold text-primary">full-stack web apps</span> using 
+                            <span class="font-bold text-red-500">Python (Flask)</span>, developed dynamic websites, and designed media content 
+                            using industry-standard tools.
+                        </p>
+                        <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-accent shadow-sm">
+                            <h4 class="font-bold text-lg mb-2 text-gray-800 flex items-center">
+                                <i class="fas fa-bullseye mr-2 text-accent"></i> Career Objective
+                            </h4>
+                            <p class="text-gray-700">
+                                Seeking the <span class="font-semibold text-primary">Student Associate (Graphics & Multimedia/Social Media)</span> role to 
+                                combine my technical and creative talents in support of 
+                                <span class="font-semibold text-red-500">EDU's community engagement</span>.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <h3 class="text-3xl font-semibold mt-10 mb-4 text-purple-800">💼 Experience</h3>
-                <div class="bg-gray-100 rounded-xl p-6 border-l-4 border-purple-400 shadow-md">
-                    <h4 class="font-bold text-xl mb-2 text-gray-800">Executive Board Member</h4>
-                    <p class="text-gray-700 mb-2 text-base">East Delta University Career Club</p>
-                    <p class="text-gray-700 text-base">
-                        Played a key role in organizing <span class="text-blue-700 font-medium">career development workshops</span>, 
-                        networking events, and student mentorship programs.
-                    </p>
+                <!-- Achievements & Experience -->
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                        <h3 class="text-2xl font-semibold mb-4 text-green-600 flex items-center">
+                            <i class="fas fa-trophy mr-2 text-accent"></i> Achievements
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r shadow-sm flex items-start">
+                                <i class="fas fa-award text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Outstanding Student Award</h4>
+                                    <p class="text-gray-600 text-sm">East Delta University</p>
+                                </div>
+                            </div>
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r shadow-sm flex items-start">
+                                <i class="fas fa-medal text-orange-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">2nd Runner-Up</h4>
+                                    <p class="text-gray-600 text-sm">ICT Fair</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r shadow-sm flex items-start">
+                                <i class="fas fa-star text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">2nd Place</h4>
+                                    <p class="text-gray-600 text-sm">Science Fair, BCSIR Chattogram</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold mt-8 mb-4 text-purple-600 flex items-center">
+                            <i class="fas fa-briefcase mr-2 text-accent"></i> Experience
+                        </h3>
+                        <div class="bg-purple-50 rounded-xl p-5 border-l-4 border-purple-400 shadow-sm">
+                            <h4 class="font-bold text-lg mb-1 text-gray-800">Executive Board Member</h4>
+                            <p class="text-gray-700 mb-3 text-sm">East Delta University Career Club</p>
+                            <p class="text-gray-700">
+                                Played a key role in organizing <span class="font-medium text-primary">career development workshops</span>, 
+                                networking events, and student mentorship programs.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <div class="section-divider"></div>
 
     <!-- Skills Section -->
     <section id="skills" class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4 md:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-extrabold text-primary section-title">My <span class="text-red-500">Skills</span></h2>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      
-      <!-- Web Development -->
-      <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-blue-700 text-3xl mb-3">
-          <i class="fas fa-laptop-code"></i>
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold text-primary section-title">My <span class="text-accent">Skills</span></h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">A blend of technical expertise and soft skills</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Web Development -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-primary text-3xl mb-3">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Web Development</h3>
+                    <p class="text-gray-600 mb-3">HTML, CSS, JavaScript, Flask</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- Creative Media -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-pink-500 text-3xl mb-3">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Creative Media</h3>
+                    <p class="text-gray-600 mb-3">Proficient in design tools</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- AI/ML -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-yellow-500 text-3xl mb-3">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">AI/ML Fundamentals</h3>
+                    <p class="text-gray-600 mb-3">Core concepts and applications</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <!-- Flutter Development -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Flutter Development</h3>
+                    <p class="text-gray-600 mb-3">Cross-platform apps</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <!-- Leadership -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-purple-500 text-3xl mb-3">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Leadership</h3>
+                    <p class="text-gray-600 mb-3">Team management</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- Communication -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-red-500 text-3xl mb-3">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Communication</h3>
+                    <p class="text-gray-600 mb-3">Verbal & written skills</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- Problem Solving -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-indigo-500 text-3xl mb-3">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Problem Solving</h3>
+                    <p class="text-gray-600 mb-3">Creative & analytical</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </div>
+
+                <!-- Time Management -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all skill-card">
+                    <div class="text-teal-500 text-3xl mb-3">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Time Management</h3>
+                    <p class="text-gray-600 mb-3">Efficient under pressure</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h3 class="font-bold text-lg text-blue-900 mb-2">Web Development</h3>
-        <p class="text-blue-800">HTML, CSS, JavaScript, Flask</p>
-      </div>
+    </section>
 
-      <!-- Creative Media -->
-      <div class="bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-pink-600 text-3xl mb-3">
-          <i class="fas fa-paint-brush"></i>
+    <div class="section-divider"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold text-primary section-title">Projects & <span class="text-accent">Experience</span></h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Showcase of my technical projects and professional experience</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project Card Template -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-blue-600 to-blue-400"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="bg-blue-100 text-blue-800 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+                                    <i class="fas fa-code text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Full-stack Web Applications</h3>
+                            </div>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Created full-stack projects using Python Flask, handling both front-end and back-end efficiently.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Flask</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Website -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-orange-500 to-yellow-400"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="bg-orange-100 text-orange-800 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+                                    <i class="fas fa-paint-brush text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Dynamic Websites & Tools</h3>
+                            </div>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">UI/UX</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Designed interactive websites with modern UI/UX and responsive layouts.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">JavaScript</span>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">UI/UX Design</span>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Career Club -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-400"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="bg-green-100 text-green-800 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+                                    <i class="fas fa-users text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">EDU Career Club</h3>
+                            </div>
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Leadership</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Led initiatives and events to develop students' professional skills and networks.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Leadership</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Event Planning</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Networking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Applications -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-purple-600 to-indigo-500"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="bg-purple-100 text-purple-800 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
+                                    <i class="fas fa-mobile-alt text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile Applications</h3>
+                            </div>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Flutter</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Built mobile apps using Flutter with a focus on UI design and performance.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Flutter</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Dart</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">UI Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h3 class="font-bold text-lg text-pink-900 mb-2">Creative Media</h3>
-        <p class="text-pink-800">Proficient in design tools</p>
-      </div>
+    </section>
 
-      <!-- AI/ML -->
-      <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-yellow-600 text-3xl mb-3">
-          <i class="fas fa-brain"></i>
+    <div class="section-divider"></div>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold text-primary section-title">Education & <span class="text-accent">Background</span></h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">My academic journey and qualifications</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Timeline -->
+                <div class="relative pl-8 border-l-2 border-primary ml-4">
+                    <!-- Timeline Item 1 -->
+                    <div class="mb-10 relative fade-in">
+                        <div class="absolute -left-11 top-2 w-6 h-6 bg-primary rounded-full border-4 border-white shadow-lg"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-semibold text-primary">BSc in Computer Science & Engineering</h3>
+                            <p class="text-gray-700 font-medium mt-1">East Delta University, Chattogram</p>
+                            <p class="mt-2">
+                                <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Running</span>
+                                <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full ml-2">CGPA: 3.52</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full ml-2">Credits: 152.5</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="mb-10 relative fade-in delay-100">
+                        <div class="absolute -left-11 top-2 w-6 h-6 bg-accent rounded-full border-4 border-white shadow-lg"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-800">Higher Secondary Certificate (HSC)</h3>
+                            <p class="text-gray-700 font-medium mt-1">Prabartak School & College</p>
+                            <p class="mt-2">
+                                <span class="bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full">Completed: 2020</span>
+                                <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full ml-2">GPA: 4.64</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="mb-10 relative fade-in delay-200">
+                        <div class="absolute -left-11 top-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-800">Secondary School Certificate (SSC)</h3>
+                            <p class="text-gray-700 font-medium mt-1">Hathazari Govt. Parbati Model High School</p>
+                            <p class="mt-2">
+                                <span class="bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full">Completed: 2018</span>
+                                <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full ml-2">GPA: 4.32</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="mt-14 bg-white p-8 rounded-2xl shadow-md max-w-xl mx-auto fade-in">
+                    <h3 class="text-2xl font-bold text-center text-primary mb-6">Languages</h3>
+                    <div class="flex justify-center gap-6">
+                        <div class="text-center">
+                            <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-language text-3xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">Bangla</h4>
+                            <p class="text-gray-600">Native</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-globe text-3xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">English</h4>
+                            <p class="text-gray-600">Professional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h3 class="font-bold text-lg text-yellow-900 mb-2">AI/ML Fundamentals</h3>
-        <p class="text-yellow-800">Core concepts and applications</p>
-      </div>
+    </section>
 
-      <!-- Flutter Development -->
-      <div class="bg-gradient-to-br from-green-100 to-green-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-green-700 text-3xl mb-3">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h3 class="font-bold text-lg text-green-900 mb-2">Flutter Development</h3>
-        <p class="text-green-800">Cross-platform apps</p>
-      </div>
-
-      <!-- Leadership -->
-      <div class="bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-purple-700 text-3xl mb-3">
-          <i class="fas fa-users"></i>
-        </div>
-        <h3 class="font-bold text-lg text-purple-900 mb-2">Leadership</h3>
-        <p class="text-purple-800">Team management</p>
-      </div>
-
-      <!-- Communication -->
-      <div class="bg-gradient-to-br from-red-100 to-red-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-red-600 text-3xl mb-3">
-          <i class="fas fa-comments"></i>
-        </div>
-        <h3 class="font-bold text-lg text-red-900 mb-2">Communication</h3>
-        <p class="text-red-800">Verbal & written skills</p>
-      </div>
-
-      <!-- Problem Solving -->
-      <div class="bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-indigo-600 text-3xl mb-3">
-          <i class="fas fa-lightbulb"></i>
-        </div>
-        <h3 class="font-bold text-lg text-indigo-900 mb-2">Problem Solving</h3>
-        <p class="text-indigo-800">Creative & analytical</p>
-      </div>
-
-      <!-- Time Management -->
-      <div class="bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-        <div class="text-teal-600 text-3xl mb-3">
-          <i class="fas fa-clock"></i>
-        </div>
-        <h3 class="font-bold text-lg text-teal-900 mb-2">Time Management</h3>
-        <p class="text-teal-800">Efficient under pressure</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-   <section id="projects" class="py-16 bg-gradient-to-b from-white via-gray-50 to-white">
-  <div class="container mx-auto px-4 md:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-extrabold text-gray-800">Projects & <span class="text-blue-600">Experience</span></h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      
-      <!-- Project Card Template -->
-      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-blue-600 to-blue-400 group-hover:blur-sm transition-all"></div>
-        <div class="relative p-6 z-10">
-          <div class="text-white bg-blue-500 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
-            <i class="fas fa-code text-xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Full-stack Web Applications</h3>
-          <p class="text-gray-600 text-sm mb-4">
-            Created full-stack projects using Python Flask, handling both front-end and back-end efficiently.
-          </p>
-          <div class="flex flex-wrap gap-2 text-xs">
-            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Python</span>
-            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Flask</span>
-            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">HTML/CSS</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dynamic Website -->
-      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-orange-500 to-yellow-400 group-hover:blur-sm transition-all"></div>
-        <div class="relative p-6 z-10">
-          <div class="text-white bg-orange-500 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
-            <i class="fas fa-paint-brush text-xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Dynamic Websites & Tools</h3>
-          <p class="text-gray-600 text-sm mb-4">
-            Designed interactive websites with modern UI/UX and responsive layouts.
-          </p>
-          <div class="flex flex-wrap gap-2 text-xs">
-            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">JavaScript</span>
-            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">UI/UX Design</span>
-            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Responsive</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Career Club -->
-      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-green-500 to-teal-400 group-hover:blur-sm transition-all"></div>
-        <div class="relative p-6 z-10">
-          <div class="text-white bg-green-500 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
-            <i class="fas fa-users text-xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">EDU Career Club</h3>
-          <p class="text-gray-600 text-sm mb-4">
-            Led initiatives and events to develop students’ professional skills and networks.
-          </p>
-          <div class="flex flex-wrap gap-2 text-xs">
-            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Leadership</span>
-            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Event Planning</span>
-            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Networking</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Applications -->
-      <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-purple-600 to-indigo-500 group-hover:blur-sm transition-all"></div>
-        <div class="relative p-6 z-10">
-          <div class="text-white bg-purple-600 w-12 h-12 flex items-center justify-center rounded-full shadow-md mb-4">
-            <i class="fas fa-mobile-alt text-xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile Applications</h3>
-          <p class="text-gray-600 text-sm mb-4">
-            Built mobile apps using Flutter with a focus on UI design and performance.
-          </p>
-          <div class="flex flex-wrap gap-2 text-xs">
-            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Flutter</span>
-            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Dart</span>
-            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">UI Design</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
- <!-- Education Section -->
-<section id="education" class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4 md:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-red-600"> Education</h2>
-    </div>
-    
-    <div class="relative max-w-3xl mx-auto pl-6 border-l-4 border-red-500">
-      <!-- Timeline Item 1 -->
-      <div class="mb-10 relative">
-        <div class="absolute -left-3 top-1 w-6 h-6 bg-red-500 rounded-full border-4 border-white"></div>
-        <h3 class="text-2xl font-semibold text-blue-700">- BSc in Computer Science & Engineering</h3>
-        <p class="text-gray-700 font-medium">East Delta University, Chattogram</p>
-        <p class="text-yellow-600">Running | CGPA: <span class="font-bold">3.52</span> | Credits: 152.5</p>
-      </div>
-
-      <!-- Timeline Item 2 -->
-      <div class="mb-10 relative">
-        <div class="absolute -left-3 top-1 w-6 h-6 bg-yellow-500 rounded-full border-4 border-white"></div>
-        <h3 class="text-2xl font-semibold text-purple-700">- Higher Secondary Certificate (HSC)</h3>
-        <p class="text-gray-700 font-medium">Prabartak School & College</p>
-        <p class="text-red-600">2020 | GPA: <span class="font-bold">4.64</span></p>
-      </div>
-
-      <!-- Timeline Item 3 -->
-      <div class="mb-10 relative">
-        <div class="absolute -left-3 top-1 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
-        <h3 class="text-2xl font-semibold text-green-700">- Secondary School Certificate (SSC)</h3>
-        <p class="text-gray-700 font-medium">Hathazari Govt. Parbati Model High School</p>
-        <p class="text-purple-600">2018 | GPA: <span class="font-bold">4.32</span></p>
-      </div>
-    </div>
-
-    <!-- Languages -->
-    <div class="mt-14 text-center">
-      <h3 class="text-3xl font-bold text-blue-700 mb-4"> Languages</h3>
-      <div class="flex justify-center gap-4 flex-wrap">
-        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">Bangla (Native)</span>
-        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-medium">English</span>
-      </div>
-    </div>
-  </div>
-</section>
-
+    <div class="section-divider"></div>
 
     <!-- Contact Section -->
-   <section id="contact" class="py-20 bg-gradient-to-br from-white to-gray-100">
-  <div class="container mx-auto px-4 md:px-8">
-    <div class="text-center mb-14">
-      <h2 class="text-4xl font-extrabold text-blue-700">Contact Me</h2>
-      <p class="mt-2 text-gray-600 text-lg">Let’s collaborate, innovate, and create something amazing together.</p>
-    </div>
+    <section id="contact" class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl font-extrabold text-primary section-title">Get In <span class="text-accent">Touch</span></h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Have a project in mind or want to discuss opportunities? I'd love to hear from you!</p>
+            </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-      <!-- Contact Info -->
-      <div class="space-y-6">
-        <h3 class="text-2xl font-semibold text-gray-800">Get in Touch</h3>
-        <p class="text-gray-600 mb-8 leading-relaxed">
-          Whether it's a project, a question, or an opportunity—I'm always open to talking. Reach out, and let's make something meaningful.
-        </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Contact Information</h3>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Whether it's a project, a question, or an opportunity—I'm always open to talking. Reach out, and let's make something meaningful.
+                    </p>
 
-        <!-- Contact Item -->
-        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
-          <i class="fas fa-map-marker-alt text-red-500 text-2xl"></i>
-          <div>
-            <h4 class="text-gray-800 font-semibold">Location</h4>
-            <p class="text-gray-600">Chattogram, Bangladesh</p>
-          </div>
+                    <!-- Contact Item -->
+                    <div class="flex items-center gap-4 bg-white backdrop-blur-md rounded-xl p-5 shadow-md transition-all hover:shadow-lg">
+                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-800 font-semibold">Location</h4>
+                            <p class="text-gray-600">Chattogram, Bangladesh</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-white backdrop-blur-md rounded-xl p-5 shadow-md transition-all hover:shadow-lg">
+                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-800 font-semibold">Email</h4>
+                            <p class="text-gray-600">221016412@eastdelta.edu.bd</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-white backdrop-blur-md rounded-xl p-5 shadow-md transition-all hover:shadow-lg">
+                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-phone-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-800 font-semibold">Phone</h4>
+                            <p class="text-gray-600">+8801991944833</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-white backdrop-blur-md rounded-xl p-5 shadow-md transition-all hover:shadow-lg">
+                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-globe text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-800 font-semibold">Portfolio</h4>
+                            <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="text-primary hover:underline">
+                                dhubadada.github.io/my-portfolio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send a Message</h3>
+                        <form class="space-y-5">
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="name">Name</label>
+                                <input type="text" id="name" placeholder="Your Name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="email">Email</label>
+                                <input type="email" id="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="subject">Subject</label>
+                                <input type="text" id="subject" placeholder="Subject" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="message">Message</label>
+                                <textarea id="message" rows="5" placeholder="Your Message" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:outline-none transition"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-primary to-blue-700 text-white py-3 rounded-xl font-semibold shadow-md hover:opacity-90 transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
-          <i class="fas fa-envelope text-blue-500 text-2xl"></i>
-          <div>
-            <h4 class="text-gray-800 font-semibold">Email</h4>
-            <p class="text-gray-600">221016412@eastdelta.edu.bd</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
-          <i class="fas fa-phone-alt text-green-500 text-2xl"></i>
-          <div>
-            <h4 class="text-gray-800 font-semibold">Phone</h4>
-            <p class="text-gray-600">+8801991944833</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-4 bg-white/80 backdrop-blur-md shadow-md rounded-xl p-5 transition hover:scale-105 duration-300">
-          <i class="fas fa-globe text-purple-500 text-2xl"></i>
-          <div>
-            <h4 class="text-gray-800 font-semibold">Portfolio</h4>
-            <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="text-blue-600 hover:underline">
-              dhubadada.github.io/my-portfolio
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contact Form -->
-      <div>
-        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send a Message</h3>
-        <form class="space-y-5">
-          <input type="text" placeholder="Your Name" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-          <input type="email" placeholder="Your Email" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-          <input type="text" placeholder="Subject" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-          <textarea rows="5" placeholder="Your Message" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
-          <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 rounded-xl font-semibold shadow-md hover:opacity-90 transition duration-300">
-             Send Message
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Footer -->
-    <footer class="py-10 bg-[#7f1d1d] text-white">
-  <div class="container mx-auto px-4 md:px-8 text-center">
-    
-    <!-- Social Icons -->
-    <div class="flex justify-center space-x-6 mb-6 text-xl">
-      <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="hover:text-yellow-300 transition-colors">
-        <i class="fas fa-globe"></i>
-      </a>
-      <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="hover:text-yellow-300 transition-colors">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="https://github.com/Dhubadada" target="_blank" class="hover:text-yellow-300 transition-colors">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="mailto:221016412@eastdelta.edu.bd" class="hover:text-yellow-300 transition-colors">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </div>
+    <footer class="py-12 bg-gradient-to-r from-primary to-blue-800 text-white">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <div class="flex justify-center space-x-6 mb-6 text-xl">
+                <a href="https://dhubadada.github.io/my-portfolio/" target="_blank" class="hover:text-yellow-300 transition-colors">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="https://linkedin.com/in/dhruba-chowdhury-b0b310309" target="_blank" class="hover:text-yellow-300 transition-colors">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Dhubadada" target="_blank" class="hover:text-yellow-300 transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:221016412@eastdelta.edu.bd" class="hover:text-yellow-300 transition-colors">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
 
-    <!-- Motivational Line -->
-    <p class="italic font-medium text-lg mb-4">"Strive not to be a success, but rather to be of value." – Albert Einstein</p>
+            <p class="italic font-medium text-lg mb-4">"Strive not to be a success, but rather to be of value." – Albert Einstein</p>
 
-    <!-- Footer Info -->
-    <p class="text-sm">&copy; 2025 <span class="font-semibold">Dhruba Chowdhury</span>. All rights reserved.</p>
-    <p class="text-sm mt-1">East Delta University, Chattogram</p>
-    
-  </div>
-</footer>
-
+            <p class="text-sm">&copy; 2025 <span class="font-semibold">Dhruba Chowdhury</span>. All rights reserved.</p>
+            <p class="text-sm mt-1">East Delta University, Chattogram</p>
+        </div>
+    </footer>
 
     <script>
         // Smooth scrolling for navigation links
@@ -615,9 +877,68 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.remove('active');
                 }
             });
         });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Wave hand animation
+        const waveHand = document.querySelector('.wave-hand');
+        setTimeout(() => {
+            waveHand.style.animation = 'none';
+        }, 2500);
     </script>
 </body>
 </html>
